@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Bloggers</string>
+    <string name="title_activity_main_content">MainActivity</string>
+    <string name="txt_categorias">Categorias</string>
+    <string name="txt_mis_favs">Mis Favoritos</string>
+
+    <!-- slides -->
+    <string name="txt_next">Siguiente</string>
+    <string name="txt_done">Terminar</string>
+    <string name="title_slide_one">Las mejores recetas de cocina</string>
+    <string name="title_slide_two">Las mas deliciosas comidas tradicionales</string>
+    <string name="title_slide_three">Un postresito?, por supuesto.!</string>
+
+</resources>
