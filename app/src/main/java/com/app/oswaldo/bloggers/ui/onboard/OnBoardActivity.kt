@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.app.oswaldo.bloggers.R
 import com.app.oswaldo.bloggers.adapters.onboard.ViewPagerAdapter
 import com.app.oswaldo.bloggers.databinding.ActivityMainBinding
+import com.app.oswaldo.bloggers.ui.login.LoginActivity
 import com.app.oswaldo.bloggers.utils.makeStatusBarTransparent
 import com.app.oswaldo.bloggers.ui.main.MainContentActivity
 import com.app.oswaldo.bloggers.utils.Constants
@@ -81,7 +82,7 @@ class OnBoardActivity : AppCompatActivity() {
     }
 
     private fun terminar() {
-        val intent = Intent(this, MainContentActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }

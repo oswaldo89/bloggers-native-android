@@ -1,9 +1,11 @@
 package com.app.oswaldo.bloggers.ui.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.app.oswaldo.bloggers.databinding.ActivityLoginBinding
+import com.app.oswaldo.bloggers.ui.main.MainContentActivity
 import com.app.oswaldo.bloggers.utils.makeStatusBarTransparent
 
 class LoginActivity : AppCompatActivity() {
@@ -18,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun attemptLogin(view: View) {
-        //val intent = Intent(this, HomeActivity::class.java)
-       //startActivity(intent)
+        val intent = Intent(this, MainContentActivity::class.java)
+       startActivity(intent)
     }
 }

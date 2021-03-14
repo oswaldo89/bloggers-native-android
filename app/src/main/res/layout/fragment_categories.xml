@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
         android:paddingStart="@dimen/_20sdp"
-        android:text="Bienvenido"
+        android:text="Bloggers List"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@id/ts_temperature"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toTopOf="@id/recyclerCategories"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="ejemplo" />
+        tools:text="people" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategories"

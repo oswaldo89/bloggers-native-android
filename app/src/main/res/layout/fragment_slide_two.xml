@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_420sdp"
         android:scaleType="centerCrop"
-        android:src="@drawable/food_two"
+        android:src="@drawable/bg_two"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

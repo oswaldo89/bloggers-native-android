@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="@id/worm_dots_indicator"
         app:layout_constraintStart_toStartOf="@id/worm_dots_indicator"
         app:layout_constraintTop_toBottomOf="@id/worm_dots_indicator"
-        tools:text="Titulo del texto" />
+        tools:text="Title" />
 
     <TextView
         android:layout_width="0dp"
@@ -61,7 +61,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/_30sdp"
         android:paddingEnd="@dimen/_30sdp"
-        android:text="Las recetas en esta aplicación, son recopilaciones de varias fuentes, recomendamos validar si los alimentos propuestos en las recetas son apropiados para su salud personal."
+        android:text="Love following the latest trends in fashion and beauty? Don't miss these Mexican bloggers and influencers! They have their fingers on the pulse of fashion, beauty, and lifestyle, making them the ones to watch."
         android:textColor="#A5A5A5"
         android:textSize="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_20sdp"
         android:fontFamily="@font/roboto_condensed_regular"
-        android:text="Omitir pasos"
+        android:text="Skip"
         app:layout_constraintBottom_toBottomOf="@id/btnAction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnAction" />
@@ -88,7 +88,7 @@
         android:paddingTop="@dimen/_10sdp"
         android:paddingEnd="@dimen/_20sdp"
         android:paddingBottom="@dimen/_10sdp"
-        android:text="Siguiente"
+        android:text="@string/txt_next"
         android:textSize="@dimen/_11sdp"
         app:backgroundTint="@color/colorPrimary"
         app:cornerRadius="@dimen/_10sdp"

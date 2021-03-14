@@ -5,10 +5,10 @@
     <string name="txt_mis_favs">Mis Favoritos</string>
 
     <!-- slides -->
-    <string name="txt_next">Siguiente</string>
-    <string name="txt_done">Terminar</string>
-    <string name="title_slide_one">Las mejores recetas de cocina</string>
-    <string name="title_slide_two">Las mas deliciosas comidas tradicionales</string>
-    <string name="title_slide_three">Un postresito?, por supuesto.!</string>
+    <string name="txt_next">Next</string>
+    <string name="txt_done">Done</string>
+    <string name="title_slide_one">The best bloggers in the world</string>
+    <string name="title_slide_two">Blogger power list!</string>
+    <string name="title_slide_three">Save and manage your favorite bloggers!</string>
 
 </resources>
