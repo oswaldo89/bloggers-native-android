@@ -5,7 +5,7 @@ import com.app.oswaldo.bloggers.data.model.Category
 
 class Constants {
     companion object {
-        const val BASE_URL = "http://46098f727aa4.ngrok.io/api/"
+        const val BASE_URL = "http://ff51aa042412.ngrok.io/api/"
         const val SLIDE_ONE = 1
         const val SLIDE_TWO = 2
         const val SLIDE_THREE = 3

@@ -16,4 +16,6 @@ class NewBloggerActivity : AppCompatActivity() {
     fun backAction(view: View) {
         finish()
     }
+
+    fun addBlogger(view: View) {}
 }
