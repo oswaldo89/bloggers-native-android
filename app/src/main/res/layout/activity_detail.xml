@@ -65,13 +65,36 @@
         app:layout_constraintTop_toBottomOf="@id/imgBlogger" />
 
     <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:gravity="center"
+        android:text="Huevito estrellado"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintTop_toBottomOf="@id/titleName" />
+
+    <TextView
+        android:id="@+id/txtWebSite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:gravity="center"
+        android:text="Huevito estrellado"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@id/txtEmail" />
+
+    <TextView
         android:id="@+id/titleDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_3sdp"
         android:fontFamily="@font/roboto_condensed_regular"
+        android:gravity="center"
         android:padding="10dp"
         android:text="Huevito estrellado"
         android:textSize="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/titleName" />
+        app:layout_constraintTop_toBottomOf="@id/txtWebSite" />
 </androidx.constraintlayout.widget.ConstraintLayout>
