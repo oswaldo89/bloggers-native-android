@@ -61,6 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSlideTitle" />
 
     <EditText
+        android:inputType="textPassword"
         android:id="@+id/txtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
