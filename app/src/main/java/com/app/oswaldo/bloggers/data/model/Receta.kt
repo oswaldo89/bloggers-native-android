@@ -1,4 +1,4 @@
-package com.app.oswaldo.bloggers.model
+package com.app.oswaldo.bloggers.data.model
 
 
 import com.google.gson.annotations.SerializedName

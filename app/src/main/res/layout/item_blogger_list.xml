@@ -45,11 +45,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:fontFamily="@font/roboto_condensed_regular"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Hola mundo"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toEndOf="@id/imgReceta"
                 app:layout_constraintTop_toTopOf="@id/imgReceta" />
+
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:maxLines="4"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgReceta"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                tools:text="Hola aksdakljsja asjdlkajs djkla sdklajs kldjaksjdkla jdsajskldjalsjas dk akd jklasd alkdjklas da skdkal jsddjaklsdjkasjdljas dadlka d alksdjlkaskldjalkdjlkasdlk akld alskd klasjdlkasjdjklas dlkas jdlkas kldaslkdlkasj dlkajsld aslkdjkla skdl aslkdj laks dlkasj dl" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

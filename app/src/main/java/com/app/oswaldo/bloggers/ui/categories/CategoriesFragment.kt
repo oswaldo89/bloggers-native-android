@@ -6,71 +6,97 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.app.oswaldo.bloggers.R
 import com.app.oswaldo.bloggers.adapters.categories.ICardCategory
 import com.app.oswaldo.bloggers.adapters.categories.SliderAdapter
+import com.app.oswaldo.bloggers.adapters.receta.BloggersAdapter
 import com.app.oswaldo.bloggers.adapters.receta.ICardReceta
-import com.app.oswaldo.bloggers.adapters.receta.RecetaAdapter
+import com.app.oswaldo.bloggers.data.api.response.Blogger
+import com.app.oswaldo.bloggers.data.model.Category
+import com.app.oswaldo.bloggers.data.remote.RemoteDataSourceImpl
 import com.app.oswaldo.bloggers.databinding.FragmentCategoriesBinding
-import com.app.oswaldo.bloggers.model.Category
-import com.app.oswaldo.bloggers.model.Receta
+import com.app.oswaldo.bloggers.domain.RepoImpl
+import com.app.oswaldo.bloggers.ui.categories.view_model.CategoriesViewModel
+import com.app.oswaldo.bloggers.ui.categories.view_model.VMCategories
 import com.app.oswaldo.bloggers.ui.detail.DetailActivity
+import com.app.oswaldo.bloggers.utils.Constants
+import com.app.oswaldo.bloggers.utils.Resource
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
 
 @SuppressLint("SetTextI18n")
 class CategoriesFragment : Fragment(), ICardCategory, ICardReceta {
 
+    private val viewModel by viewModels<CategoriesViewModel> { VMCategories( RepoImpl( RemoteDataSourceImpl() ) ) }
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var layoutManger: CardSliderLayoutManager
     private lateinit var sliderAdapter: SliderAdapter
     private var currentPosition = 0
-    private val categoryList = ArrayList<Category>()
 
-    private val mRecetasAdapter: RecetaAdapter = RecetaAdapter()
+    private val mRecetasAdapter: BloggersAdapter = BloggersAdapter()
 
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
+    override fun onCreateView( inflater: LayoutInflater,  container: ViewGroup?,  savedInstanceState: Bundle? ): View {
 
-        _binding  = FragmentCategoriesBinding.inflate(inflater, container, false)
+        _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         val view = binding.root
 
         sliderAdapter = SliderAdapter()
-        sliderAdapter.recyclerAdapter(dataModelCategory(), requireContext(), this)
+        sliderAdapter.recyclerAdapter(Constants.dataModelCategory(), requireContext(), this)
 
         initRecyclerView()
 
+        setupObserver()
         onActiveCardChange(0)
         return view
     }
 
-    private fun dataModelCategory(): ArrayList<Category> {
-        categoryList.add(Category(1,"Carnita asada", 152, "https://dam.cocinafacil.com.mx/wp-content/uploads/2019/06/parrillada2.jpg"))
-        categoryList.add(Category(2,"Postres", 36, "https://www.hola.com/imagenes/cocina/recetas/20190806147086/receta-batido-galletas-oreo-vainilla/0-707-944/recetas-postres-faciles-galletas-oreo-m.jpg"))
-        categoryList.add(Category(3,"Comida Mexicana", 17, "https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2018/06/curiosidades-de-la-comida-mexicana-que-no-conocias.jpg"))
-        return categoryList
+    private fun setupObserver() {
+        viewModel.categoryList.observe(viewLifecycleOwner, { result ->
+            when (result) {
+                is Resource.Loading -> {
+                    binding.emptyData.visibility = View.GONE
+                    binding.rvBloggers.visibility = View.GONE
+                    binding.progressLoading.visibility = View.VISIBLE
+                }
+                is Resource.Success -> {
+                    binding.progressLoading.visibility = View.GONE
+                    mRecetasAdapter.recyclerAdapter(result.data.list, requireContext(), this)
+                    binding.rvBloggers.adapter = mRecetasAdapter
+                    binding.txtCategory.text = Constants.categories[currentPosition]
+
+                    if (result.data.list.isNotEmpty()) {
+                        binding.rvBloggers.visibility = View.VISIBLE
+                        binding.emptyData.visibility = View.GONE
+
+                        if(result.data.list.size == 1){
+                            binding.tsTemperature.text = "${result.data.list.size} blogger"
+                        }else{
+                            binding.tsTemperature.text = "${result.data.list.size} bloggers"
+                        }
+
+                    } else {
+                        binding.rvBloggers.visibility = View.GONE
+                        binding.emptyData.visibility = View.VISIBLE
+                        binding.tsTemperature.text = "0 bloggers"
+                    }
+                }
+                is Resource.Failure -> {
+                    binding.progressLoading.visibility = View.GONE
+                    Toast.makeText(requireActivity(),"ocurrio un error inesperado, intente de nuevo", Toast.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 
-    private fun dataModel(): ArrayList<Receta> {
-        val lista = ArrayList<Receta>()
-        lista.add(Receta(1,"Carnita asada", "La carnita asada es un platillo tipico del Norte",3276,54 , "https://dam.cocinafacil.com.mx/wp-content/uploads/2019/06/parrillada2.jpg"))
-        lista.add(Receta(2,"Carnita asada", "La carnita asada es un platillo tipico del Norte",3276,54 , "https://saboryestilo.com.mx/wp-content/uploads/2020/01/tips-para-hacer-la-mejor-carne-asada-1200x720.jpg"))
-        lista.add(Receta(3,"Carnita asada", "La carnita asada es un platillo tipico del Norte",3276,54 , "https://d1e3z2jco40k3v.cloudfront.net/-/media/mccormick-us/recipes/lawrys/c/2000/carne_asada_steak2000x1125.jpg"))
-        lista.add(Receta(4,"Carnita asada", "La carnita asada es un platillo tipico del Norte",3276,54 , "https://www.cocogrill.net/wp-content/uploads/2019/05/carne-asada-ala-tampique%C3%B1a-cocogrill.jpg"))
-        lista.add(Receta(5,"Carnita asada", "La carnita asada es un platillo tipico del Norte",3276,54 , "https://i.ytimg.com/vi/IFCsoNGs0A8/maxresdefault.jpg"))
-        return lista
-    }
-
-    private fun initRecyclerRecetas(){
-        binding.recyclerRecetas.setHasFixedSize(true)
-        binding.recyclerRecetas.layoutManager = LinearLayoutManager(requireActivity())
-
-        mRecetasAdapter.recyclerAdapter(dataModel(), requireContext(), this)
-        binding.recyclerRecetas.adapter = mRecetasAdapter
+    private fun initrvBloggers() {
+        binding.rvBloggers.setHasFixedSize(true)
+        binding.rvBloggers.layoutManager = LinearLayoutManager(requireActivity())
     }
 
     private fun initRecyclerView() {
@@ -94,10 +120,9 @@ class CategoriesFragment : Fragment(), ICardCategory, ICardReceta {
 
     private fun onActiveCardChange(pos: Int) {
         currentPosition = pos
-        binding.tsTemperature.text = "${categoryList[currentPosition].totalItems} recetas!"
-        binding.txtCategory.text = categoryList[currentPosition].description
 
-        initRecyclerRecetas()
+        initrvBloggers()
+        viewModel.attemptGetList(pos)
     }
 
     override fun onCategoryTouch(item: Category, position: Int) {
@@ -107,11 +132,17 @@ class CategoriesFragment : Fragment(), ICardCategory, ICardReceta {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding  = null
+        _binding = null
     }
 
-    override fun onItemTouch(item: Receta) {
+    override fun onItemTouch(item: Blogger) {
         val intent = Intent(requireActivity(), DetailActivity::class.java)
+        intent.putExtra("id", item.id)
+        intent.putExtra("name", item.name)
+        intent.putExtra("description", item.description)
+        intent.putExtra("picture", item.picture)
+        intent.putExtra("website", item.website)
+        intent.putExtra("email", item.email)
         startActivity(intent)
     }
 

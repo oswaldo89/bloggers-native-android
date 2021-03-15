@@ -9,7 +9,7 @@
 
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imgFood"
+        android:id="@+id/imgBlogger"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
         android:scaleType="centerCrop"
@@ -29,15 +29,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="backAction"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_70sdp"
         android:background="@drawable/btn_back"
+        android:clickable="true"
         android:elevation="@dimen/_10sdp"
+        android:focusable="true"
+        android:onClick="backAction"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +54,7 @@
 
 
     <TextView
-        android:id="@+id/titleFood"
+        android:id="@+id/titleName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
@@ -62,5 +62,16 @@
         android:gravity="center"
         android:text="Huevito estrellado"
         android:textSize="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/imgFood" />
+        app:layout_constraintTop_toBottomOf="@id/imgBlogger" />
+
+    <TextView
+        android:id="@+id/titleDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:padding="10dp"
+        android:text="Huevito estrellado"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/titleName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

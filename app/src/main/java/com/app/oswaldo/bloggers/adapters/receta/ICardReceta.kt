@@ -1,7 +1,7 @@
 package com.app.oswaldo.bloggers.adapters.receta
 
-import com.app.oswaldo.bloggers.model.Receta
+import com.app.oswaldo.bloggers.data.api.response.Blogger
 
 interface ICardReceta {
-    fun onItemTouch(item: Receta)
+    fun onItemTouch(item: Blogger)
 }

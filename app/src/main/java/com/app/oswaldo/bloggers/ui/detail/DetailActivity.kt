@@ -1,16 +1,42 @@
 package com.app.oswaldo.bloggers.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.app.oswaldo.bloggers.R
+import com.app.oswaldo.bloggers.data.api.response.Blogger
+import com.app.oswaldo.bloggers.databinding.ActivityDetailBinding
 import com.app.oswaldo.bloggers.utils.makeStatusBarTransparent
+import com.bumptech.glide.Glide
 
 class DetailActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDetailBinding
+    private lateinit var blogger : Blogger
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         makeStatusBarTransparent()
-        setContentView(R.layout.activity_detail)
+
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        prepareData()
+
+
+        Glide.with(this).load(blogger.picture).into(binding.imgBlogger)
+        binding.titleName.text = blogger.name
+        binding.titleDescription.text = blogger.description
+    }
+
+    private fun prepareData()
+    {
+        blogger = Blogger(
+            intent.getIntExtra("id", 0),
+            intent.getStringExtra("name"),
+            intent.getStringExtra("description"),
+            intent.getStringExtra("picture"),
+            intent.getStringExtra("website"),
+            intent.getStringExtra("email")
+        )
     }
 
     fun backAction(view: View) {

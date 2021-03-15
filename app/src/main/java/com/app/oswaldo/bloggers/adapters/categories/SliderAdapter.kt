@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.oswaldo.bloggers.R
-import com.app.oswaldo.bloggers.model.Category
+import com.app.oswaldo.bloggers.data.model.Category
 import com.bumptech.glide.Glide
 
 class SliderAdapter : RecyclerView.Adapter<SliderAdapter.ViewHolder>() {
